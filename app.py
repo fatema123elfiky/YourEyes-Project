@@ -1,7 +1,5 @@
 import streamlit as st
-import cv2
-import numpy as np
-from PIL import Image
+
 import time
 from pathlib import Path
 
@@ -758,7 +756,7 @@ def run_video_detection(
     enable_audio: bool
 ):
     """Run video detection in OpenCV window"""
-
+    import cv2
     cap = cv2.VideoCapture(source)
 
     if not cap.isOpened():
@@ -819,6 +817,8 @@ def run_video_detection(
 
 def show_image_mode():
     """Display image mode page"""
+    import cv2
+    import numpy as np
 
     st.markdown("# 📷 Image Mode")
     st.markdown("Upload an image to detect objects and hear audio descriptions")
