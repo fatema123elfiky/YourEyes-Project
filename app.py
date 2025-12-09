@@ -9,26 +9,7 @@ import os
 import requests
 from pathlib import Path
 
-def download_file(url, local_path):
-    local_path = Path(local_path)
-    if local_path.exists():
-        print(f"{local_path} already exists")
-        return
-    print(f"Downloading {url} -> {local_path}")
-    r = requests.get(url, stream=True)
-    r.raise_for_status()
-    with open(local_path, "wb") as f:
-        for chunk in r.iter_content(chunk_size=8192):
-            if chunk:
-                f.write(chunk)
-    print("Download finished.")
 
-# Replace with the blob URLs you copied (SAS URL if private)
-BEST_URL = "https://fatemamodels.blob.core.windows.net/models/best.pt?sp=r&st=2025-12-06T22:12:43Z&se=2025-12-23T06:27:43Z&spr=https&sv=2024-11-04&sr=b&sig=pa4KisYT%2FrWoHipqoxuF6ojvitUGpLJwxbNtRD8Kh7Y%3D"
-YOLO_URL = "https://fatemamodels.blob.core.windows.net/models/yolov8n.pt?sp=r&st=2025-12-06T22:13:39Z&se=2025-12-23T06:28:39Z&spr=https&sv=2024-11-04&sr=b&sig=53UN5974TdzE5gYNVZKv81sTcRas1bRd%2FRjeJYh68n8%3D"
-
-download_file(BEST_URL, "best.pt")
-download_file(YOLO_URL, "yolov8n.pt")
 
 # Then load your models normally
 # model = YOLO("best.pt")
